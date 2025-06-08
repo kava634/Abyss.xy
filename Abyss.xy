@@ -1,11 +1,11 @@
-local circle = Drawing.new("Circle")
+ local circle = Drawing.new("Circle")
 circle.Visible = true
 circle.Radius = 50
 circle.Color = Color3.fromRGB(255, 255, 20)
-circle.Transparency = 0.25
+circle.Transparency = 1.5
 circle.Thickness = 2
 circle.Position = Vector2.new(workspace.CurrentCamera.ViewportSize.X/2, workspace.CurrentCamera.ViewportSize.Y/2)
-local smoothFactor = 0.25
+local smoothFactor = 1.2
 
 
 local function getHeadScreenPosition(character)
@@ -37,7 +37,7 @@ local function findClosestPlayerInCircle()
     return closestPlayer
 end
 
--- Основной цикл
+-- Создание Скрипта Хитбокса
 game:GetService("RunService").RenderStepped:Connect(function()
     circle.Position = Vector2.new(workspace.CurrentCamera.ViewportSize.X/2, workspace.CurrentCamera.ViewportSize.Y/2)
     
@@ -95,7 +95,7 @@ local function EnableBoxESP()
     for _, Player in pairs(game:GetService("Workspace"):GetChildren()) do
         if Player:IsA("Model") and Player:FindFirstChild("HumanoidRootPart") and Player:FindFirstChild("Head") then
             local Box = BoxESP.Create(Player)
-            table.insert(Boxes, Box)
+            table.insert(Boxes, Box )
         end
     end
 end
@@ -110,10 +110,10 @@ end)
 EnableBoxESP()
 
 local SelectPart = "Head"
-local HBSizeX = 2.7
-local HBSizeY = 2.5
-local HBSizeZ = 2.7
-local HBTrans = 0.5
+local HBSizeX = 5.0
+local HBSizeY = 5.0
+local HBSizeZ = 50.1
+local HBTrans = 6.8
 
 local PurpleColor = BrickColor.new("Really red")
 
@@ -127,7 +127,7 @@ task.spawn(function ()
             if i:FindFirstChild("HumanoidRootPart") and not i:FindFirstChild("Fake1") then
                 local FakeHead = Instance.new("Part", i)
                 FakeHead.CFrame = i.Head.CFrame
-                FakeHead.Name = SelectPart
+                FakeHead.Name = Neverlose
                 FakeHead.Size = Vector3.new(HBSizeX, HBSizeY, HBSizeZ)
                 FakeHead.Anchored = true
                 FakeHead.CanCollide = false
@@ -144,4 +144,3 @@ task.spawn(function ()
         end
     end
 end)
-
